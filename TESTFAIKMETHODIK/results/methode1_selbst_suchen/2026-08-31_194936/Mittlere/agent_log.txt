@@ -1,0 +1,220 @@
+SYSTEM-PROMPT:
+# Agent 1: Sucher
+
+Du bist ein sorgfaeltiger Entwicklungs-Agent fuer ein Tischlampen-Projekt.
+Deine Spezialitaet: Du findest relevante Stellen im Projekt eigenstaendig,
+ohne Vorwissen ueber die Struktur.
+
+Halte dich strikt an deinen Skill (unten). Mache keine Aenderungen,
+die nicht zur Aufgabe gehoeren.
+
+
+# Skill: Selbst suchen (Methode 1)
+
+Du bekommst KEINE Pfadangaben und KEINE Karte des Projekts.
+
+Vorgehen:
+1. Erkunde das Projekt eigenstaendig mit `list_dir` (beginne bei ".").
+2. Lies Dateien mit `read_file`, um herauszufinden, wo die Platzhalter-Variantenkennung vorkommt.
+3. Ersetze jede Fundstelle mit `str_replace` in der exakt passenden Schreibweise.
+4. Benutze KEINE Hilfsskripte des Projekts (kein variant.json-Workflow) -
+   aendere die Zieldateien direkt.
+5. Pruefe am Ende, dass du alle Fundstellen ersetzt hast.
+
+
+Allgemeine Regeln:
+- Arbeite nur mit den bereitgestellten Werkzeugen im Projektverzeichnis.
+- Relative Pfade beziehen sich auf den Projektstamm.
+- Wenn die Aufgabe erledigt ist, antworte ohne Werkzeugaufruf nur mit FERTIG.
+
+USER-PROMPT:
+Leite im vorliegenden Tischlampen-Projekt die neue Variante "Mittlere" aus der Platzhalter-Variante "Variantx" ab.
+
+Die Platzhalterkennung kommt im Projekt in 5 Schreibweisen vor und muss exakt so ersetzt werden:
+- VARIANTX    -> MITTLERE
+- Variantx    -> Mittlere
+- variantx    -> mittlere
+- variantxevo -> mittlereevo
+- VariantxEVO -> MittlereEVO
+
+Gross-/Kleinschreibung muss exakt stimmen. Aendere sonst nichts.
+======================================================================
+
+--- Runde 1 (stop=tool_use, in=1480, out=109) ---
+[TEXT] Ich werde das Projekt erkunden, alle Vorkommen der Platzhalter-Variante "Variantx" finden und sie durch "Mittlere" in den entsprechenden Schreibweisen ersetzen.
+[TOOL] list_dir {"path": "."}
+[ERGEBNIS] [F] SEMANTIC_MAP.md | [D] stages | [D] tools | [F] variant.json
+
+--- Runde 2 (stop=tool_use, in=1626, out=53) ---
+[TOOL] list_dir {"path": "stages"}
+[ERGEBNIS] [D] stages/stage01_netzteil | [D] stages/stage02_kabel | [D] stages/stage03_schalter | [D] stages/stage04_fassung | [D] stages/stage05_leuchtmittel | [D] stages/stage06_schirm | [D] stages/stage07_standfuss | [D] stages/stage08_gelenkarm | [D] stages/stage09_dimmer | [D] stages/stage10_verpackung
+
+--- Runde 3 (stop=tool_use, in=1808, out=55) ---
+[TOOL] read_file {"path": "variant.json"}
+[ERGEBNIS] { |   "variant_name": "Variantx", |   "hinweis": "Nur das Feld 'variant_name' aendern, danach ausfuehren: python tools/apply_variant.py" | } | 
+
+--- Runde 4 (stop=tool_use, in=1932, out=80) ---
+[TEXT] Ich werde nun die Stages durchsuchen. Beginne mit stage01:
+[TOOL] list_dir {"path": "stages/stage01_netzteil"}
+[ERGEBNIS] [F] stages/stage01_netzteil/README.md | [F] stages/stage01_netzteil/bom.csv | [F] stages/stage01_netzteil/config.yaml | [F] stages/stage01_netzteil/pruefplan.txt | [F] stages/stage01_netzteil/stage.json
+
+--- Runde 5 (stop=tool_use, in=2105, out=208) ---
+[TOOL] read_file {"path": "stages/stage01_netzteil/README.md"}
+[ERGEBNIS] # Stage 01 - Netzteil |  | Diese Stufe definiert die Stromversorgung der Tischlampe. |  | Dateien: | - stage.json: Metadaten und Kennungen der Stufe | - config.yaml: technische Parameter des Netzteils | - bom.csv: Stueckliste | - pruefplan.txt: Pruefschritte fuer die Endkontrolle | 
+[TOOL] read_file {"path": "stages/stage01_netzteil/bom.csv"}
+[ERGEBNIS] position;teil;menge;bemerkung | 1;Steckernetzteil 12V 1.5A;1;extern | 2;Hohlstecker 5.5mm;1;verloetet | 3;Zugentlastung;1;kunststoff | 
+[TOOL] read_file {"path": "stages/stage01_netzteil/config.yaml"}
+[ERGEBNIS] netzteil: |   typ: steckernetzteil |   eingang_v: 230 |   ausgang_v: 12 |   max_strom_ma: 1500 |   wirkungsgrad_prozent: 87 |   schutzklasse: II |   stecker: eu | 
+[TOOL] read_file {"path": "stages/stage01_netzteil/pruefplan.txt"}
+[ERGEBNIS] Pruefplan Netzteil | 1. Sichtpruefung Gehaeuse und Stecker | 2. Leerlaufspannung messen (Soll: 12.0 V +/- 0.3 V) | 3. Spannung unter Volllast messen (1500 mA) | 4. Erwaermung nach 30 min Volllast (< 45 Grad C) | 5. Ergebnis im Pruefprotokoll dokumentieren | 
+
+--- Runde 6 (stop=tool_use, in=2789, out=64) ---
+[TOOL] read_file {"path": "stages/stage01_netzteil/stage.json"}
+[ERGEBNIS] { |   "stage": "01_netzteil", |   "beschreibung": "Netzteil und Stromversorgung der Tischlampe", |   "variantenkennung": "VARIANTX", |   "eingangsspannung_v": 230, |   "ausgangsspannung_v": 12, |   "max_strom_ma": 1500, |   "freigabe": true | } | 
+
+--- Runde 7 (stop=tool_use, in=2970, out=232) ---
+[TEXT] Gefunden! In stage.json steht "VARIANTX". Ich erkunde alle weiteren Stages:
+[TOOL] read_file {"path": "stages/stage02_kabel/stage.json"}
+[ERGEBNIS] { |   "stage": "02_kabel", |   "beschreibung": "Zuleitung und interne Verkabelung", |   "variant_id": "TL-Variantx-01", |   "kabellaenge_m": 1.8, |   "querschnitt_mm2": 0.75, |   "farbe": "schwarz" | } | 
+[TOOL] read_file {"path": "stages/stage03_schalter/stage.json"}
+[ERGEBNIS] { |   "stage": "03_schalter", |   "beschreibung": "Ein-/Ausschalter am Kabel", |   "modellname": "tischlampe_variantx", |   "schalter_typ": "wippschalter", |   "position_cm_vom_fuss": 40, |   "schaltzyklen_min": 10000 | } | 
+[TOOL] read_file {"path": "stages/stage04_fassung/stage.json"}
+[ERGEBNIS] { |   "stage": "04_fassung", |   "beschreibung": "Lampenfassung E27", |   "produktlinie": "variantxevo", |   "fassung": "E27", |   "material": "Keramik", |   "max_watt": 60 | } | 
+[TOOL] read_file {"path": "stages/stage05_leuchtmittel/stage.json"}
+[ERGEBNIS] { |   "stage": "05_leuchtmittel", |   "beschreibung": "LED-Leuchtmittel Spezifikation", |   "hardware_variante": "HW-VariantxEVO", |   "leistung_w": 9, |   "lichtfarbe_k": 2700, |   "lumen": 806, |   "dimmbar": true | } | 
+
+--- Runde 8 (stop=tool_use, in=3680, out=363) ---
+[TEXT] Sehr gut! Ich sehe bereits mehrere Schreibweisen:
+- stage01: "VARIANTX" → MITTLERE
+- stage02: "Variantx" → Mittlere  
+- stage03: "variantx" → mittlere
+- stage04: "variantxevo" → mittlereevo
+- stage05: "VariantxEVO" → MittlereEVO
+
+Ich lese die restlichen Stages:
+[TOOL] read_file {"path": "stages/stage06_schirm/stage.json"}
+[ERGEBNIS] { |   "stage": "06_schirm", |   "beschreibung": "Lampenschirm aus Textil", |   "sku_variante": "SKU-VARIANTX-2024", |   "durchmesser_cm": 25, |   "hoehe_cm": 20, |   "farbe": "beige" | } | 
+[TOOL] read_file {"path": "stages/stage07_standfuss/stage.json"}
+[ERGEBNIS] { |   "stage": "07_standfuss", |   "beschreibung": "Standfuss und Gewicht", |   "baureihe": "Variantx", |   "material": "Stahl", |   "gewicht_g": 950, |   "durchmesser_cm": 16 | } | 
+[TOOL] read_file {"path": "stages/stage08_gelenkarm/stage.json"}
+[ERGEBNIS] { |   "stage": "08_gelenkarm", |   "beschreibung": "Verstellbarer Gelenkarm", |   "cad_projekt": "cad_variantx_arm", |   "gelenke": 2, |   "max_auszug_cm": 45, |   "arretierung": "friktion" | } | 
+[TOOL] read_file {"path": "stages/stage09_dimmer/stage.json"}
+[ERGEBNIS] { |   "stage": "09_dimmer", |   "beschreibung": "Touch-Dimmer Elektronik", |   "kalibrierprofil": "dim_variantxevo.cal", |   "stufen": 3, |   "min_helligkeit_prozent": 10, |   "standby_verbrauch_w": 0.3 | } | 
+[TOOL] read_file {"path": "stages/stage10_verpackung/stage.json"}
+[ERGEBNIS] { |   "stage": "10_verpackung", |   "beschreibung": "Verpackung und Etikettierung", |   "etikett_name": "Tischlampe VariantxEVO", |   "karton_mm": "300x300x450", |   "recycling": true | } | 
+
+--- Runde 9 (stop=tool_use, in=4602, out=216) ---
+[TEXT] Perfekt! Ich habe weitere Vorkommen gefunden:
+- stage06: "VARIANTX" → MITTLERE
+- stage07: "Variantx" → Mittlere
+- stage08: "variantx" → mittlere
+- stage09: "variantxevo" → mittlereevo
+- stage10: "VariantxEVO" → MittlereEVO
+
+Ich prüfe auch noch das tools-Verzeichnis und SEMANTIC_MAP.md:
+[TOOL] read_file {"path": "SEMANTIC_MAP.md"}
+[ERGEBNIS] # Semantische Karte - Tischlampen-Projekt |  | Diese Karte beschreibt, welcher Ordner und welche Datei wofuer zustaendig ist. |  | ## Projektstamm | - `variant.json`: zentrale Varianten-Definition (nur fuer den automatisierten Tool-Workflow relevant) | - `tools/`: Hilfsskripte (`apply_variant.py` schreibt die Variante automatisch in alle Stages) | - `stages/`: die 10 Entwicklungs-/Fertigungsstufen der Tischlampe |  | ## Wichtig fuer Varianten-Aenderungen | Die Varianten-/Produktkennung einer Stage steht IMMER in der `stage.json` | der jeweiligen Stage (der Feldname ist je Stage unterschiedlich). | Alle uebrigen Dateien (`README.md`, `config.yaml`, `bom.csv`, `pruefplan.txt`, | `notizen.txt`) enthalten KEINE Variantenkennung und muessen dafuer nicht | gelesen oder geaendert werden. |  | ## Stages im Detail | - `stages/stage
+[TOOL] list_dir {"path": "tools"}
+[ERGEBNIS] [F] tools/apply_variant.py | [F] tools/variant_manifest.json
+
+--- Runde 10 (stop=tool_use, in=5724, out=110) ---
+[TEXT] Gut. Laut SEMANTIC_MAP.md enthält nur stage.json in jeder Stage die Variantenkennung. Ich prüfe noch variant.json und eventuell die Tool-Dateien:
+[TOOL] read_file {"path": "tools/variant_manifest.json"}
+[ERGEBNIS] [ |   {"datei": "stages/stage01_netzteil/stage.json",     "feld": "variantenkennung",  "form": "VARIANTX",    "muster": "{X}"}, |   {"datei": "stages/stage02_kabel/stage.json",        "feld": "variant_id",        "form": "Variantx",    "muster": "TL-{X}-01"}, |   {"datei": "stages/stage03_schalter/stage.json",     "feld": "modellname",        "form": "variantx",    "muster": "tischlampe_{X}"}, |   {"datei": "stages/stage04_fassung/stage.json",      "feld": "produktlinie",      "form": "variantxevo", "muster": "{X}"}, |   {"datei": "stages/stage05_leuchtmittel/stage.json", "feld": "hardware_variante", "form": "VariantxEVO", "muster": "HW-{X}"}, |   {"datei": "stages/stage06_schirm/stage.json",       "feld": "sku_variante",      "form": "VARIANTX",    "muster": "SKU-{X}-2024"}, |   {"datei": "stages/stage
+
+--- Runde 11 (stop=tool_use, in=6379, out=195) ---
+[TEXT] Perfekt! Das Manifest bestätigt alle 10 Fundstellen und zeigt auch die Muster. Jetzt ersetze ich alle Vorkommen in der richtigen Schreibweise:
+
+**Stage 01 - VARIANTX → MITTLERE:**
+[TOOL] str_replace {"path": "stages/stage01_netzteil/stage.json", "old_str": "  \"variantenkennung\": \"VARIANTX\",", "new_str": "  \"variantenkennung\": \"MITTLERE\","}
+[ERGEBNIS] OK: ersetzt.
+
+--- Runde 12 (stop=tool_use, in=6590, out=150) ---
+[TEXT] **Stage 02 - Variantx → Mittlere:**
+[TOOL] str_replace {"path": "stages/stage02_kabel/stage.json", "old_str": "  \"variant_id\": \"TL-Variantx-01\",", "new_str": "  \"variant_id\": \"TL-Mittlere-01\","}
+[ERGEBNIS] OK: ersetzt.
+
+--- Runde 13 (stop=tool_use, in=6756, out=147) ---
+[TEXT] **Stage 03 - variantx → mittlere:**
+[TOOL] str_replace {"path": "stages/stage03_schalter/stage.json", "old_str": "  \"modellname\": \"tischlampe_variantx\",", "new_str": "  \"modellname\": \"tischlampe_mittlere\","}
+[ERGEBNIS] OK: ersetzt.
+
+--- Runde 14 (stop=tool_use, in=6919, out=140) ---
+[TEXT] **Stage 04 - variantxevo → mittlereevo:**
+[TOOL] str_replace {"path": "stages/stage04_fassung/stage.json", "old_str": "  \"produktlinie\": \"variantxevo\",", "new_str": "  \"produktlinie\": \"mittlereevo\","}
+[ERGEBNIS] OK: ersetzt.
+
+--- Runde 15 (stop=tool_use, in=7075, out=159) ---
+[TEXT] **Stage 05 - VariantxEVO → MittlereEVO:**
+[TOOL] str_replace {"path": "stages/stage05_leuchtmittel/stage.json", "old_str": "  \"hardware_variante\": \"HW-VariantxEVO\",", "new_str": "  \"hardware_variante\": \"HW-MittlereEVO\","}
+[ERGEBNIS] OK: ersetzt.
+
+--- Runde 16 (stop=tool_use, in=7250, out=157) ---
+[TEXT] **Stage 06 - VARIANTX → MITTLERE:**
+[TOOL] str_replace {"path": "stages/stage06_schirm/stage.json", "old_str": "  \"sku_variante\": \"SKU-VARIANTX-2024\",", "new_str": "  \"sku_variante\": \"SKU-MITTLERE-2024\","}
+[ERGEBNIS] OK: ersetzt.
+
+--- Runde 17 (stop=tool_use, in=7423, out=143) ---
+[TEXT] **Stage 07 - Variantx → Mittlere:**
+[TOOL] str_replace {"path": "stages/stage07_standfuss/stage.json", "old_str": "  \"baureihe\": \"Variantx\",", "new_str": "  \"baureihe\": \"Mittlere\","}
+[ERGEBNIS] OK: ersetzt.
+
+--- Runde 18 (stop=tool_use, in=7582, out=149) ---
+[TEXT] **Stage 08 - variantx → mittlere:**
+[TOOL] str_replace {"path": "stages/stage08_gelenkarm/stage.json", "old_str": "  \"cad_projekt\": \"cad_variantx_arm\",", "new_str": "  \"cad_projekt\": \"cad_mittlere_arm\","}
+[ERGEBNIS] OK: ersetzt.
+
+--- Runde 19 (stop=tool_use, in=7747, out=154) ---
+[TEXT] **Stage 09 - variantxevo → mittlereevo:**
+[TOOL] str_replace {"path": "stages/stage09_dimmer/stage.json", "old_str": "  \"kalibrierprofil\": \"dim_variantxevo.cal\",", "new_str": "  \"kalibrierprofil\": \"dim_mittlereevo.cal\","}
+[ERGEBNIS] OK: ersetzt.
+
+--- Runde 20 (stop=tool_use, in=7917, out=163) ---
+[TEXT] **Stage 10 - VariantxEVO → MittlereEVO:**
+[TOOL] str_replace {"path": "stages/stage10_verpackung/stage.json", "old_str": "  \"etikett_name\": \"Tischlampe VariantxEVO\",", "new_str": "  \"etikett_name\": \"Tischlampe MittlereEVO\","}
+[ERGEBNIS] OK: ersetzt.
+
+--- Runde 21 (stop=tool_use, in=8096, out=286) ---
+[TEXT] Nun prüfe ich alle Dateien, um sicherzustellen, dass alle Ersetzungen korrekt durchgeführt wurden:
+[TOOL] read_file {"path": "stages/stage01_netzteil/stage.json"}
+[ERGEBNIS] { |   "stage": "01_netzteil", |   "beschreibung": "Netzteil und Stromversorgung der Tischlampe", |   "variantenkennung": "MITTLERE", |   "eingangsspannung_v": 230, |   "ausgangsspannung_v": 12, |   "max_strom_ma": 1500, |   "freigabe": true | } | 
+[TOOL] read_file {"path": "stages/stage02_kabel/stage.json"}
+[ERGEBNIS] { |   "stage": "02_kabel", |   "beschreibung": "Zuleitung und interne Verkabelung", |   "variant_id": "TL-Mittlere-01", |   "kabellaenge_m": 1.8, |   "querschnitt_mm2": 0.75, |   "farbe": "schwarz" | } | 
+[TOOL] read_file {"path": "stages/stage03_schalter/stage.json"}
+[ERGEBNIS] { |   "stage": "03_schalter", |   "beschreibung": "Ein-/Ausschalter am Kabel", |   "modellname": "tischlampe_mittlere", |   "schalter_typ": "wippschalter", |   "position_cm_vom_fuss": 40, |   "schaltzyklen_min": 10000 | } | 
+[TOOL] read_file {"path": "stages/stage04_fassung/stage.json"}
+[ERGEBNIS] { |   "stage": "04_fassung", |   "beschreibung": "Lampenfassung E27", |   "produktlinie": "mittlereevo", |   "fassung": "E27", |   "material": "Keramik", |   "max_watt": 60 | } | 
+[TOOL] read_file {"path": "stages/stage05_leuchtmittel/stage.json"}
+[ERGEBNIS] { |   "stage": "05_leuchtmittel", |   "beschreibung": "LED-Leuchtmittel Spezifikation", |   "hardware_variante": "HW-MittlereEVO", |   "leistung_w": 9, |   "lichtfarbe_k": 2700, |   "lumen": 806, |   "dimmbar": true | } | 
+
+--- Runde 22 (stop=tool_use, in=8990, out=251) ---
+[TOOL] read_file {"path": "stages/stage06_schirm/stage.json"}
+[ERGEBNIS] { |   "stage": "06_schirm", |   "beschreibung": "Lampenschirm aus Textil", |   "sku_variante": "SKU-MITTLERE-2024", |   "durchmesser_cm": 25, |   "hoehe_cm": 20, |   "farbe": "beige" | } | 
+[TOOL] read_file {"path": "stages/stage07_standfuss/stage.json"}
+[ERGEBNIS] { |   "stage": "07_standfuss", |   "beschreibung": "Standfuss und Gewicht", |   "baureihe": "Mittlere", |   "material": "Stahl", |   "gewicht_g": 950, |   "durchmesser_cm": 16 | } | 
+[TOOL] read_file {"path": "stages/stage08_gelenkarm/stage.json"}
+[ERGEBNIS] { |   "stage": "08_gelenkarm", |   "beschreibung": "Verstellbarer Gelenkarm", |   "cad_projekt": "cad_mittlere_arm", |   "gelenke": 2, |   "max_auszug_cm": 45, |   "arretierung": "friktion" | } | 
+[TOOL] read_file {"path": "stages/stage09_dimmer/stage.json"}
+[ERGEBNIS] { |   "stage": "09_dimmer", |   "beschreibung": "Touch-Dimmer Elektronik", |   "kalibrierprofil": "dim_mittlereevo.cal", |   "stufen": 3, |   "min_helligkeit_prozent": 10, |   "standby_verbrauch_w": 0.3 | } | 
+[TOOL] read_file {"path": "stages/stage10_verpackung/stage.json"}
+[ERGEBNIS] { |   "stage": "10_verpackung", |   "beschreibung": "Verpackung und Etikettierung", |   "etikett_name": "Tischlampe MittlereEVO", |   "karton_mm": "300x300x450", |   "recycling": true | } | 
+
+--- Runde 23 (stop=end_turn, in=9800, out=319) ---
+[TEXT] Perfekt! Alle 10 Ersetzungen wurden korrekt durchgeführt:
+
+✓ **Stage 01**: "VARIANTX" → "MITTLERE"
+✓ **Stage 02**: "Variantx" → "Mittlere"
+✓ **Stage 03**: "variantx" → "mittlere"
+✓ **Stage 04**: "variantxevo" → "mittlereevo"
+✓ **Stage 05**: "VariantxEVO" → "MittlereEVO"
+✓ **Stage 06**: "VARIANTX" → "MITTLERE"
+✓ **Stage 07**: "Variantx" → "Mittlere"
+✓ **Stage 08**: "variantx" → "mittlere"
+✓ **Stage 09**: "variantxevo" → "mittlereevo"
+✓ **Stage 10**: "VariantxEVO" → "MittlereEVO"
+
+Die neue Variante "Mittlere" wurde erfolgreich aus der Platzhalter-Variante "Variantx" abgeleitet. Alle 5 Schreibweisen wurden in den entsprechenden stage.json-Dateien exakt ersetzt.
+
+FERTIG
+
+VERBRAUCH: {"input_tokens": 127240, "output_tokens": 3903, "cache_creation_input_tokens": 0, "cache_read_input_tokens": 0}  API-Aufrufe: 23

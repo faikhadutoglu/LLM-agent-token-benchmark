@@ -1,0 +1,5 @@
+fassung:
+  typ: E27
+  material: keramik
+  max_watt: 60
+  gewinde: metall

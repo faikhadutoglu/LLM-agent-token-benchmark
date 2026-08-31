@@ -1,0 +1,8 @@
+{
+  "stage": "07_standfuss",
+  "beschreibung": "Standfuss und Gewicht",
+  "baureihe": "Mittlere",
+  "material": "Stahl",
+  "gewicht_g": 950,
+  "durchmesser_cm": 16
+}

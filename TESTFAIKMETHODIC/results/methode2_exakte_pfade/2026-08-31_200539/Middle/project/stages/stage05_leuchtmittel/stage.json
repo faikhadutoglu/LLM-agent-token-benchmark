@@ -1,0 +1,9 @@
+{
+  "stage": "05_leuchtmittel",
+  "beschreibung": "LED-Leuchtmittel Spezifikation",
+  "hardware_variante": "HW-MiddleEVO",
+  "leistung_w": 9,
+  "lichtfarbe_k": 2700,
+  "lumen": 806,
+  "dimmbar": true
+}

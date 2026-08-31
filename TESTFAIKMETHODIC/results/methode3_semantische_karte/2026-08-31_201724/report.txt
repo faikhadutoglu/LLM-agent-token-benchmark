@@ -1,0 +1,19 @@
+==============================================================================
+TESTFAIKMETHODIK - Bericht
+Methode 3: Semantische Karte
+Modell: claude-sonnet-4-5
+Erstellt: 2026-08-31 20:19:33
+==============================================================================
+
+Variante   Ergebnis         Felder   Dateien   Zeit(s)   Aufrufe  In-Tok    Out-Tok  
+------------------------------------------------------------------------------
+Entry      BESTANDEN        10/10    30/30     25.1      4        13551     2065     
+Middle     BESTANDEN        10/10    30/30     27.2      4        13679     2150     
+Einfach    BESTANDEN        10/10    30/30     26.5      4        13628     2127     
+Mittlere   BESTANDEN        10/10    30/30     25.5      4        13721     2153     
+Easy       BESTANDEN        10/10    30/30     24.3      4        13555     2047     
+------------------------------------------------------------------------------
+GESAMT: bestanden 5/5 | Zeit 128.6 s | API-Aufrufe 20
+TOKENS: input 68134 | output 10542 | cache_creation 0 | cache_read 0
+
+Details je Variante: <Variante>/agent_log.txt und <Variante>/pruefung.txt

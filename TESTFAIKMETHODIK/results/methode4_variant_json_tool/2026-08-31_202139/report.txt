@@ -1,0 +1,19 @@
+==============================================================================
+TESTFAIKMETHODIK - Bericht
+Methode 4: variant.json + Tool
+Modell: claude-sonnet-4-5
+Erstellt: 2026-08-31 20:22:28
+==============================================================================
+
+Variante   Ergebnis         Felder   Dateien   Zeit(s)   Aufrufe  In-Tok    Out-Tok  
+------------------------------------------------------------------------------
+Entry      BESTANDEN        10/10    30/30     9.2       4        6987      364      
+Middle     BESTANDEN        10/10    30/30     10.9      4        7026      370      
+Einfach    BESTANDEN        10/10    30/30     10.6      4        7096      408      
+Mittlere   BESTANDEN        10/10    30/30     8.1       4        6874      237      
+Easy       BESTANDEN        10/10    30/30     10.0      4        7044      394      
+------------------------------------------------------------------------------
+GESAMT: bestanden 5/5 | Zeit 48.7 s | API-Aufrufe 20
+TOKENS: input 35027 | output 1773 | cache_creation 0 | cache_read 0
+
+Details je Variante: <Variante>/agent_log.txt und <Variante>/pruefung.txt

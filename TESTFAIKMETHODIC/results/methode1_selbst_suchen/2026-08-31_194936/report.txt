@@ -1,0 +1,19 @@
+==============================================================================
+TESTFAIKMETHODIK - Bericht
+Methode 1: Selbst suchen
+Modell: claude-sonnet-4-5
+Erstellt: 2026-08-31 19:56:46
+==============================================================================
+
+Variante   Ergebnis         Felder   Dateien   Zeit(s)   Aufrufe  In-Tok    Out-Tok  
+------------------------------------------------------------------------------
+Entry      BESTANDEN        10/10    30/30     54.1      11       50760     3432     
+Middle     BESTANDEN        10/10    30/30     43.5      11       50343     3266     
+Einfach    BESTANDEN        10/10    30/30     148.5     60       376355    5163     
+Mittlere   BESTANDEN        10/10    30/30     78.9      23       127240    3903     
+Easy       BESTANDEN        10/10    30/30     104.9     39       200360    3917     
+------------------------------------------------------------------------------
+GESAMT: bestanden 5/5 | Zeit 429.9 s | API-Aufrufe 144
+TOKENS: input 805058 | output 19681 | cache_creation 0 | cache_read 0
+
+Details je Variante: <Variante>/agent_log.txt und <Variante>/pruefung.txt

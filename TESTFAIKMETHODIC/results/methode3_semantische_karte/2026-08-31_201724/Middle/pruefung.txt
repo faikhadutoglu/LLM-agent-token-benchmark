@@ -1,0 +1,15 @@
+Pruefbericht  Variante: Middle
+Zielfelder korrekt:            10/10
+Uebrige Dateien unveraendert:  30/30
+Gesamtergebnis:                BESTANDEN
+----------------------------------------------------------------------
+OK      stages/stage01_netzteil/stage.json  (variantenkennung = 'MIDDLE')
+OK      stages/stage02_kabel/stage.json  (variant_id = 'TL-Middle-01')
+OK      stages/stage03_schalter/stage.json  (modellname = 'tischlampe_middle')
+OK      stages/stage04_fassung/stage.json  (produktlinie = 'middleevo')
+OK      stages/stage05_leuchtmittel/stage.json  (hardware_variante = 'HW-MiddleEVO')
+OK      stages/stage06_schirm/stage.json  (sku_variante = 'SKU-MIDDLE-2024')
+OK      stages/stage07_standfuss/stage.json  (baureihe = 'Middle')
+OK      stages/stage08_gelenkarm/stage.json  (cad_projekt = 'cad_middle_arm')
+OK      stages/stage09_dimmer/stage.json  (kalibrierprofil = 'dim_middleevo.cal')
+OK      stages/stage10_verpackung/stage.json  (etikett_name = 'Tischlampe MiddleEVO')
