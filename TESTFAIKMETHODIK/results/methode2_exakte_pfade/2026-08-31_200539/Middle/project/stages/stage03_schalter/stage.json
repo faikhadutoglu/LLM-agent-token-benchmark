@@ -1,0 +1,8 @@
+{
+  "stage": "03_schalter",
+  "beschreibung": "Ein-/Ausschalter am Kabel",
+  "modellname": "tischlampe_middle",
+  "schalter_typ": "wippschalter",
+  "position_cm_vom_fuss": 40,
+  "schaltzyklen_min": 10000
+}

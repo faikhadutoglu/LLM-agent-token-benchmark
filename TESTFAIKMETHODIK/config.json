@@ -1,0 +1,6 @@
+{
+  "model": "claude-sonnet-4-5",
+  "max_tokens": 4096,
+  "max_turns": 60,
+  "varianten": ["Entry", "Middle", "Einfach", "Mittlere", "Easy"]
+}
