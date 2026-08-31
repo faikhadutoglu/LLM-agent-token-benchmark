@@ -1,0 +1,8 @@
+{
+  "stage": "04_fassung",
+  "beschreibung": "Lampenfassung E27",
+  "produktlinie": "variantxevo",
+  "fassung": "E27",
+  "material": "Keramik",
+  "max_watt": 60
+}

@@ -1,0 +1,7 @@
+{
+  "stage": "10_verpackung",
+  "beschreibung": "Verpackung und Etikettierung",
+  "etikett_name": "Tischlampe VariantxEVO",
+  "karton_mm": "300x300x450",
+  "recycling": true
+}

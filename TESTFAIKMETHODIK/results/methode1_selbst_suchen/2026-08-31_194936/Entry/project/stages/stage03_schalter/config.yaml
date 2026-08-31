@@ -1,6 +1,0 @@
-schalter:
-  typ: wippschalter
-  position_cm_vom_fuss: 40
-  farbe: schwarz
-  schaltzyklen_min: 10000
-  bauform: schnurschalter

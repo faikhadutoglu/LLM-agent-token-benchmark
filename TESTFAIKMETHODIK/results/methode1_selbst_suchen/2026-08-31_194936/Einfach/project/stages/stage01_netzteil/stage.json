@@ -1,9 +1,0 @@
-{
-  "stage": "01_netzteil",
-  "beschreibung": "Netzteil und Stromversorgung der Tischlampe",
-  "variantenkennung": "EINFACH",
-  "eingangsspannung_v": 230,
-  "ausgangsspannung_v": 12,
-  "max_strom_ma": 1500,
-  "freigabe": true
-}

@@ -1,8 +1,0 @@
-leuchtmittel:
-  typ: led_birne
-  sockel: E27
-  leistung_w: 9
-  lichtfarbe_k: 2700
-  lumen: 806
-  dimmbar: ja
-  cri: 80

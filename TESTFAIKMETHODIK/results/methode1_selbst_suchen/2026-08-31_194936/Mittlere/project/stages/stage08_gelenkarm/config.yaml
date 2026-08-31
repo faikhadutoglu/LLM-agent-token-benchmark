@@ -1,5 +1,0 @@
-gelenkarm:
-  gelenke: 2
-  max_auszug_cm: 45
-  arretierung: friktion
-  material: aluminium

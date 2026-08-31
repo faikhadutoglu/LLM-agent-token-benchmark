@@ -1,5 +1,0 @@
-Pruefplan Dimmer
-1. Alle 3 Dimmstufen durchschalten
-2. Standby-Verbrauch messen (< 0.5 W)
-3. Touch-Reaktionszeit pruefen (< 200 ms)
-4. Ergebnis dokumentieren

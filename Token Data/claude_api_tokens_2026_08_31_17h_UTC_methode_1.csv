@@ -1,0 +1,9 @@
+usage_date_utc,model_version,api_key,workspace,usage_type,context_window,usage_input_tokens_no_cache,usage_input_tokens_cache_write_5m,usage_input_tokens_cache_write_1h,usage_input_tokens_cache_read,usage_output_tokens,web_search_count,inference_geo,speed
+2026-08-31 17:49:00,claude-sonnet-4-5-20250929,faik-variant-agent-test,Default,standard,≤ 200k,11829,0,0,0,879,0,not_available,
+2026-08-31 17:50:00,claude-sonnet-4-5-20250929,faik-variant-agent-test,Default,standard,≤ 200k,60946,0,0,0,4757,0,not_available,
+2026-08-31 17:51:00,claude-sonnet-4-5-20250929,faik-variant-agent-test,Default,standard,≤ 200k,88550,0,0,0,2445,0,not_available,
+2026-08-31 17:52:00,claude-sonnet-4-5-20250929,faik-variant-agent-test,Default,standard,≤ 200k,143886,0,0,0,1972,0,not_available,
+2026-08-31 17:53:00,claude-sonnet-4-5-20250929,faik-variant-agent-test,Default,standard,≤ 200k,186957,0,0,0,2609,0,not_available,
+2026-08-31 17:54:00,claude-sonnet-4-5-20250929,faik-variant-agent-test,Default,standard,≤ 200k,102730,0,0,0,2783,0,not_available,
+2026-08-31 17:55:00,claude-sonnet-4-5-20250929,faik-variant-agent-test,Default,standard,≤ 200k,102867,0,0,0,2884,0,not_available,
+2026-08-31 17:56:00,claude-sonnet-4-5-20250929,faik-variant-agent-test,Default,standard,≤ 200k,107293,0,0,0,1352,0,not_available,
