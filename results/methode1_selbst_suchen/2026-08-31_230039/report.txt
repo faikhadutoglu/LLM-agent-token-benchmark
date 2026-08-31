@@ -1,0 +1,19 @@
+==============================================================================
+TESTFAIKMETHODIK - Bericht
+Methode 1: Selbst suchen
+Modell: claude-haiku-4-5-20251001
+Erstellt: 2026-08-31 23:02:59
+==============================================================================
+
+Variante   Ergebnis         Felder   Dateien   Zeit(s)   Aufrufe  In-Tok    Out-Tok  
+------------------------------------------------------------------------------
+Entry      BESTANDEN        10/10    30/30     29.5      7        38795     3662     
+Middle     BESTANDEN        10/10    30/30     24.4      6        30598     3206     
+Einfach    BESTANDEN        10/10    30/30     34.7      17       104243    3750     
+Mittlere   BESTANDEN        10/10    30/30     22.0      5        24792     3183     
+Easy       BESTANDEN        10/10    30/30     29.6      6        32944     3334     
+------------------------------------------------------------------------------
+GESAMT: bestanden 5/5 | Zeit 140.2 s | API-Aufrufe 41
+TOKENS: input 231372 | output 17135 | cache_creation 0 | cache_read 0
+
+Details je Variante: <Variante>/agent_log.txt und <Variante>/pruefung.txt

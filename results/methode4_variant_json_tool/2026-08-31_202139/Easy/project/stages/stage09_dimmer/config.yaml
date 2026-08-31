@@ -1,0 +1,6 @@
+dimmer:
+  typ: touch
+  stufen: 3
+  min_helligkeit_prozent: 10
+  standby_verbrauch_w: 0.3
+  sensorflaeche: lampenfuss

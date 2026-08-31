@@ -1,0 +1,19 @@
+==============================================================================
+TESTFAIKMETHODIK - Bericht
+Methode 2: Exakte Pfade
+Modell: claude-haiku-4-5-20251001
+Erstellt: 2026-08-31 22:59:07
+==============================================================================
+
+Variante   Ergebnis         Felder   Dateien   Zeit(s)   Aufrufe  In-Tok    Out-Tok  
+------------------------------------------------------------------------------
+Entry      BESTANDEN        10/10    30/30     11.9      2        5569      1374     
+Middle     BESTANDEN        10/10    30/30     8.4       2        5580      1208     
+Einfach    BESTANDEN        10/10    30/30     10.9      2        5641      1217     
+Mittlere   BESTANDEN        10/10    30/30     6.0       2        5601      1096     
+Easy       BESTANDEN        10/10    30/30     12.4      2        5767      1371     
+------------------------------------------------------------------------------
+GESAMT: bestanden 5/5 | Zeit 49.6 s | API-Aufrufe 10
+TOKENS: input 28158 | output 6266 | cache_creation 0 | cache_read 0
+
+Details je Variante: <Variante>/agent_log.txt und <Variante>/pruefung.txt

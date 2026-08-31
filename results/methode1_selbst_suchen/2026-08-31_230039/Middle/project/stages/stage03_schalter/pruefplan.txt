@@ -1,0 +1,5 @@
+Pruefplan Schalter
+1. Schaltfunktion 20x betaetigen
+2. Uebergangswiderstand messen (< 50 mOhm)
+3. Sitz der Zugentlastung pruefen
+4. Ergebnis dokumentieren

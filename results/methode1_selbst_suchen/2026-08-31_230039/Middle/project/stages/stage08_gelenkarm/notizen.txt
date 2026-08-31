@@ -1,0 +1,3 @@
+Notizen Gelenkarm
+- Friktionsgelenke nach 500 Zyklen nachziehen testen
+- Kabelfuehrung innenliegend

@@ -1,0 +1,5 @@
+Pruefplan Standfuss
+1. Kippstabilitaet bei 10 Grad Neigung pruefen
+2. Beschichtung auf Kratzer pruefen
+3. Filzgleiter auf festen Sitz pruefen
+4. Ergebnis dokumentieren

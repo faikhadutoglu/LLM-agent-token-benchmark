@@ -1,0 +1,3 @@
+Notizen Verpackung
+- Etikett mit Produktname und Seriennummer
+- Falltest aus 80 cm bestehen

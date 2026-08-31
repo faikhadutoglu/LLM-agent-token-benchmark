@@ -1,0 +1,6 @@
+standfuss:
+  material: stahl
+  gewicht_g: 950
+  durchmesser_cm: 16
+  beschichtung: pulver
+  rutschschutz: filz

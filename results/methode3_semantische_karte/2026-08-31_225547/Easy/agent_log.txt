@@ -1,0 +1,105 @@
+SYSTEM-PROMPT:
+# Agent 3: Kartenleser
+
+Du bist ein effizienter Entwicklungs-Agent fuer ein Tischlampen-Projekt.
+Deine Spezialitaet: Du nutzt die semantische Karte des Projekts, um gezielt
+nur die relevanten Dateien zu lesen und zu aendern.
+
+Halte dich strikt an deinen Skill (unten). Mache keine Aenderungen,
+die nicht zur Aufgabe gehoeren.
+
+
+# Skill: Semantische Karte (Methode 3)
+
+Das Projekt enthaelt im Stamm die Datei `SEMANTIC_MAP.md`. Sie beschreibt,
+welcher Ordner und welche Datei wofuer zustaendig ist.
+
+Vorgehen:
+1. Lies ZUERST `SEMANTIC_MAP.md` mit `read_file`.
+2. Entscheide anhand der Karte, welche Dateien relevant sind, und lies NUR diese.
+3. Ersetze die Variantenkennung mit `str_replace` in der exakt passenden Schreibweise.
+4. Benutze KEINE Hilfsskripte des Projekts (kein variant.json-Workflow) -
+   aendere die Zieldateien direkt.
+
+
+Allgemeine Regeln:
+- Arbeite nur mit den bereitgestellten Werkzeugen im Projektverzeichnis.
+- Relative Pfade beziehen sich auf den Projektstamm.
+- Wenn die Aufgabe erledigt ist, antworte ohne Werkzeugaufruf nur mit FERTIG.
+
+USER-PROMPT:
+Leite im vorliegenden Tischlampen-Projekt die neue Variante "Easy" aus der Platzhalter-Variante "Variantx" ab.
+
+Die Platzhalterkennung kommt im Projekt in 5 Schreibweisen vor und muss exakt so ersetzt werden:
+- VARIANTX    -> EASY
+- Variantx    -> Easy
+- variantx    -> easy
+- variantxevo -> easyevo
+- VariantxEVO -> EasyEVO
+
+Gross-/Kleinschreibung muss exakt stimmen. Aendere sonst nichts.
+======================================================================
+
+--- Runde 1 (stop=tool_use, in=1467, out=113) ---
+[TEXT] Ich werde die Aufgabe systematisch angehen: Zuerst lese ich die semantische Karte, dann identifiziere ich die relevanten Dateien und führe die Varianten-Ersetzungen durch.
+[TOOL] read_file {"path": "SEMANTIC_MAP.md"}
+[ERGEBNIS] # Semantische Karte - Tischlampen-Projekt |  | Diese Karte beschreibt, welcher Ordner und welche Datei wofuer zustaendig ist. |  | ## Projektstamm | - `variant.json`: zentrale Varianten-Definition (nur fuer den automatisierten Tool-Workflow relevant) | - `tools/`: Hilfsskripte (`apply_variant.py` schreibt die Variante automatisch in alle Stages) | - `stages/`: die 10 Entwicklungs-/Fertigungsstufen der Tischlampe |  | ## Wichtig fuer Varianten-Aenderungen | Die Varianten-/Produktkennung einer Stage steht IMMER in der `stage.json` | der jeweiligen Stage (der Feldname ist je Stage unterschiedlich). | Alle uebrigen Dateien (`README.md`, `config.yaml`, `bom.csv`, `pruefplan.txt`, | `notizen.txt`) enthalten KEINE Variantenkennung und muessen dafuer nicht | gelesen oder geaendert werden. |  | ## Stages im Detail | - `stages/stage
+
+--- Runde 2 (stop=tool_use, in=2415, out=538) ---
+[TEXT] Gut! Nach der Karte muss ich nur die `stage.json` Dateien in allen 10 Stages durchsuchen und ändern. Lassen Sie mich alle stage.json Dateien lesen:
+[TOOL] read_file {"path": "stages/stage01_netzteil/stage.json"}
+[ERGEBNIS] { |   "stage": "01_netzteil", |   "beschreibung": "Netzteil und Stromversorgung der Tischlampe", |   "variantenkennung": "VARIANTX", |   "eingangsspannung_v": 230, |   "ausgangsspannung_v": 12, |   "max_strom_ma": 1500, |   "freigabe": true | } | 
+[TOOL] read_file {"path": "stages/stage02_kabel/stage.json"}
+[ERGEBNIS] { |   "stage": "02_kabel", |   "beschreibung": "Zuleitung und interne Verkabelung", |   "variant_id": "TL-Variantx-01", |   "kabellaenge_m": 1.8, |   "querschnitt_mm2": 0.75, |   "farbe": "schwarz" | } | 
+[TOOL] read_file {"path": "stages/stage03_schalter/stage.json"}
+[ERGEBNIS] { |   "stage": "03_schalter", |   "beschreibung": "Ein-/Ausschalter am Kabel", |   "modellname": "tischlampe_variantx", |   "schalter_typ": "wippschalter", |   "position_cm_vom_fuss": 40, |   "schaltzyklen_min": 10000 | } | 
+[TOOL] read_file {"path": "stages/stage04_fassung/stage.json"}
+[ERGEBNIS] { |   "stage": "04_fassung", |   "beschreibung": "Lampenfassung E27", |   "produktlinie": "variantxevo", |   "fassung": "E27", |   "material": "Keramik", |   "max_watt": 60 | } | 
+[TOOL] read_file {"path": "stages/stage05_leuchtmittel/stage.json"}
+[ERGEBNIS] { |   "stage": "05_leuchtmittel", |   "beschreibung": "LED-Leuchtmittel Spezifikation", |   "hardware_variante": "HW-VariantxEVO", |   "leistung_w": 9, |   "lichtfarbe_k": 2700, |   "lumen": 806, |   "dimmbar": true | } | 
+[TOOL] read_file {"path": "stages/stage06_schirm/stage.json"}
+[ERGEBNIS] { |   "stage": "06_schirm", |   "beschreibung": "Lampenschirm aus Textil", |   "sku_variante": "SKU-VARIANTX-2024", |   "durchmesser_cm": 25, |   "hoehe_cm": 20, |   "farbe": "beige" | } | 
+[TOOL] read_file {"path": "stages/stage07_standfuss/stage.json"}
+[ERGEBNIS] { |   "stage": "07_standfuss", |   "beschreibung": "Standfuss und Gewicht", |   "baureihe": "Variantx", |   "material": "Stahl", |   "gewicht_g": 950, |   "durchmesser_cm": 16 | } | 
+[TOOL] read_file {"path": "stages/stage08_gelenkarm/stage.json"}
+[ERGEBNIS] { |   "stage": "08_gelenkarm", |   "beschreibung": "Verstellbarer Gelenkarm", |   "cad_projekt": "cad_variantx_arm", |   "gelenke": 2, |   "max_auszug_cm": 45, |   "arretierung": "friktion" | } | 
+[TOOL] read_file {"path": "stages/stage09_dimmer/stage.json"}
+[ERGEBNIS] { |   "stage": "09_dimmer", |   "beschreibung": "Touch-Dimmer Elektronik", |   "kalibrierprofil": "dim_variantxevo.cal", |   "stufen": 3, |   "min_helligkeit_prozent": 10, |   "standby_verbrauch_w": 0.3 | } | 
+[TOOL] read_file {"path": "stages/stage10_verpackung/stage.json"}
+[ERGEBNIS] { |   "stage": "10_verpackung", |   "beschreibung": "Verpackung und Etikettierung", |   "etikett_name": "Tischlampe VariantxEVO", |   "karton_mm": "300x300x450", |   "recycling": true | } | 
+
+--- Runde 3 (stop=tool_use, in=4107, out=1198) ---
+[TEXT] Perfekt! Ich habe alle 5 Schreibvarianten gefunden. Jetzt führe ich die exakten Ersetzungen durch:
+[TOOL] str_replace {"path": "stages/stage01_netzteil/stage.json", "old_str": "  \"variantenkennung\": \"VARIANTX\",", "new_str": "  \"variantenkennung\": \"EASY\","}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage02_kabel/stage.json", "old_str": "  \"variant_id\": \"TL-Variantx-01\",", "new_str": "  \"variant_id\": \"TL-Easy-01\","}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage03_schalter/stage.json", "old_str": "  \"modellname\": \"tischlampe_variantx\",", "new_str": "  \"modellname\": \"tischlampe_easy\","}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage04_fassung/stage.json", "old_str": "  \"produktlinie\": \"variantxevo\",", "new_str": "  \"produktlinie\": \"easyevo\","}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage05_leuchtmittel/stage.json", "old_str": "  \"hardware_variante\": \"HW-VariantxEVO\",", "new_str": "  \"hardware_variante\": \"HW-EasyEVO\","}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage06_schirm/stage.json", "old_str": "  \"sku_variante\": \"SKU-VARIANTX-2024\",", "new_str": "  \"sku_variante\": \"SKU-EASY-2024\","}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage07_standfuss/stage.json", "old_str": "  \"baureihe\": \"Variantx\",", "new_str": "  \"baureihe\": \"Easy\","}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage08_gelenkarm/stage.json", "old_str": "  \"cad_projekt\": \"cad_variantx_arm\",", "new_str": "  \"cad_projekt\": \"cad_easy_arm\","}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage09_dimmer/stage.json", "old_str": "  \"kalibrierprofil\": \"dim_variantxevo.cal\",", "new_str": "  \"kalibrierprofil\": \"dim_easyevo.cal\","}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage10_verpackung/stage.json", "old_str": "  \"etikett_name\": \"Tischlampe VariantxEVO\",", "new_str": "  \"etikett_name\": \"Tischlampe EasyEVO\","}
+[ERGEBNIS] OK: ersetzt.
+
+--- Runde 4 (stop=end_turn, in=5608, out=131) ---
+[TEXT] FERTIG
+
+Die neue Variante "Easy" wurde erfolgreich aus der Platzhalter-Variante "Variantx" abgeleitet. Alle 10 stage.json Dateien wurden mit den exakten Schreibweisen-Ersetzungen aktualisiert:
+
+✓ VARIANTX → EASY
+✓ Variantx → Easy  
+✓ variantx → easy
+✓ variantxevo → easyevo
+✓ VariantxEVO → EasyEVO
+
+VERBRAUCH: {"input_tokens": 13597, "output_tokens": 1980, "cache_creation_input_tokens": 0, "cache_read_input_tokens": 0}  API-Aufrufe: 4

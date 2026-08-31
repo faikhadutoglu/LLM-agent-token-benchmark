@@ -1,0 +1,8 @@
+netzteil:
+  typ: steckernetzteil
+  eingang_v: 230
+  ausgang_v: 12
+  max_strom_ma: 1500
+  wirkungsgrad_prozent: 87
+  schutzklasse: II
+  stecker: eu

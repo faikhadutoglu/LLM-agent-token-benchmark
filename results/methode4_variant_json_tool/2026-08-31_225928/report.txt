@@ -1,0 +1,19 @@
+==============================================================================
+TESTFAIKMETHODIK - Bericht
+Methode 4: variant.json + Tool
+Modell: claude-haiku-4-5-20251001
+Erstellt: 2026-08-31 22:59:59
+==============================================================================
+
+Variante   Ergebnis         Felder   Dateien   Zeit(s)   Aufrufe  In-Tok    Out-Tok  
+------------------------------------------------------------------------------
+Entry      BESTANDEN        10/10    30/30     5.8       4        6998      377      
+Middle     BESTANDEN        10/10    30/30     6.6       4        6996      423      
+Einfach    BESTANDEN        10/10    30/30     6.4       4        6977      358      
+Mittlere   BESTANDEN        10/10    30/30     6.2       4        7020      397      
+Easy       BESTANDEN        10/10    30/30     6.0       4        7046      397      
+------------------------------------------------------------------------------
+GESAMT: bestanden 5/5 | Zeit 30.9 s | API-Aufrufe 20
+TOKENS: input 35037 | output 1952 | cache_creation 0 | cache_read 0
+
+Details je Variante: <Variante>/agent_log.txt und <Variante>/pruefung.txt

@@ -1,0 +1,12 @@
+[
+  {"datei": "stages/stage01_netzteil/stage.json",     "feld": "variantenkennung",  "form": "VARIANTX",    "muster": "{X}"},
+  {"datei": "stages/stage02_kabel/stage.json",        "feld": "variant_id",        "form": "Variantx",    "muster": "TL-{X}-01"},
+  {"datei": "stages/stage03_schalter/stage.json",     "feld": "modellname",        "form": "variantx",    "muster": "tischlampe_{X}"},
+  {"datei": "stages/stage04_fassung/stage.json",      "feld": "produktlinie",      "form": "variantxevo", "muster": "{X}"},
+  {"datei": "stages/stage05_leuchtmittel/stage.json", "feld": "hardware_variante", "form": "VariantxEVO", "muster": "HW-{X}"},
+  {"datei": "stages/stage06_schirm/stage.json",       "feld": "sku_variante",      "form": "VARIANTX",    "muster": "SKU-{X}-2024"},
+  {"datei": "stages/stage07_standfuss/stage.json",    "feld": "baureihe",          "form": "Variantx",    "muster": "{X}"},
+  {"datei": "stages/stage08_gelenkarm/stage.json",    "feld": "cad_projekt",       "form": "variantx",    "muster": "cad_{X}_arm"},
+  {"datei": "stages/stage09_dimmer/stage.json",       "feld": "kalibrierprofil",   "form": "variantxevo", "muster": "dim_{X}.cal"},
+  {"datei": "stages/stage10_verpackung/stage.json",   "feld": "etikett_name",      "form": "VariantxEVO", "muster": "Tischlampe {X}"}
+]

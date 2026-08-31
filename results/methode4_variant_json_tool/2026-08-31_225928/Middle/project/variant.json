@@ -1,0 +1,4 @@
+{
+  "variant_name": "Middle",
+  "hinweis": "Nur das Feld 'variant_name' aendern, danach ausfuehren: python tools/apply_variant.py"
+}

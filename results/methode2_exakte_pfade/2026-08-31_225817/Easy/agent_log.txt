@@ -1,0 +1,100 @@
+SYSTEM-PROMPT:
+# Agent 2: Pfadfolger
+
+Du bist ein praeziser Entwicklungs-Agent fuer ein Tischlampen-Projekt.
+Deine Spezialitaet: Du arbeitest eine exakte Vorgabenliste ab, ohne selbst
+zu suchen oder zusaetzliche Dateien zu lesen.
+
+Halte dich strikt an deinen Skill (unten). Mache keine Aenderungen,
+die nicht zur Aufgabe gehoeren.
+
+
+# Skill: Exakte Pfade (Methode 2)
+
+Du bekommst die exakten Fundstellen. Du musst NICHTS suchen und KEINE anderen
+Dateien lesen. Wende direkt `str_replace` mit dem angegebenen alten Wert an.
+
+Platzhalter in der Tabelle:
+- `<NEU_GROSS>` = neuer Variantenname in GROSSBUCHSTABEN (z. B. ENTRY)
+- `<Neu>`       = neuer Variantenname, erster Buchstabe gross, Rest klein (z. B. Entry)
+- `<neu>`       = neuer Variantenname komplett klein (z. B. entry)
+
+Zu aendernde Stellen (jeweils der komplette Feldwert in der stage.json):
+
+| Nr | Datei                                     | Feld               | Alter Wert                 | Neuer Wert              |
+|----|-------------------------------------------|--------------------|----------------------------|-------------------------|
+| 1  | stages/stage01_netzteil/stage.json        | variantenkennung   | "VARIANTX"                 | "<NEU_GROSS>"           |
+| 2  | stages/stage02_kabel/stage.json           | variant_id         | "TL-Variantx-01"           | "TL-<Neu>-01"           |
+| 3  | stages/stage03_schalter/stage.json        | modellname         | "tischlampe_variantx"      | "tischlampe_<neu>"      |
+| 4  | stages/stage04_fassung/stage.json         | produktlinie       | "variantxevo"              | "<neu>evo"              |
+| 5  | stages/stage05_leuchtmittel/stage.json    | hardware_variante  | "HW-VariantxEVO"           | "HW-<Neu>EVO"           |
+| 6  | stages/stage06_schirm/stage.json          | sku_variante       | "SKU-VARIANTX-2024"        | "SKU-<NEU_GROSS>-2024"  |
+| 7  | stages/stage07_standfuss/stage.json       | baureihe           | "Variantx"                 | "<Neu>"                 |
+| 8  | stages/stage08_gelenkarm/stage.json       | cad_projekt        | "cad_variantx_arm"         | "cad_<neu>_arm"         |
+| 9  | stages/stage09_dimmer/stage.json          | kalibrierprofil    | "dim_variantxevo.cal"      | "dim_<neu>evo.cal"      |
+| 10 | stages/stage10_verpackung/stage.json      | etikett_name       | "Tischlampe VariantxEVO"   | "Tischlampe <Neu>EVO"   |
+
+Vorgehen:
+1. Fuehre fuer jede Zeile der Tabelle genau ein `str_replace` aus
+   (old_str = alter Wert inkl. Anfuehrungszeichen, new_str = neuer Wert inkl. Anfuehrungszeichen).
+2. Aendere sonst nichts. Benutze keine Hilfsskripte.
+
+
+Allgemeine Regeln:
+- Arbeite nur mit den bereitgestellten Werkzeugen im Projektverzeichnis.
+- Relative Pfade beziehen sich auf den Projektstamm.
+- Wenn die Aufgabe erledigt ist, antworte ohne Werkzeugaufruf nur mit FERTIG.
+
+USER-PROMPT:
+Leite im vorliegenden Tischlampen-Projekt die neue Variante "Easy" aus der Platzhalter-Variante "Variantx" ab.
+
+Die Platzhalterkennung kommt im Projekt in 5 Schreibweisen vor und muss exakt so ersetzt werden:
+- VARIANTX    -> EASY
+- Variantx    -> Easy
+- variantx    -> easy
+- variantxevo -> easyevo
+- VariantxEVO -> EasyEVO
+
+Gross-/Kleinschreibung muss exakt stimmen. Aendere sonst nichts.
+======================================================================
+
+--- Runde 1 (stop=tool_use, in=2111, out=1242) ---
+[TEXT] Ich werde die neue Variante "Easy" aus "Variantx" ableiten, indem ich die 10 Dateien nach der bereitgestellten Tabelle exakt anpasse. Dabei verwende ich:
+- `<NEU_GROSS>` = EASY
+- `<Neu>` = Easy
+- `<neu>` = easy
+
+Hier sind die 10 Ersetzungen:
+[TOOL] str_replace {"path": "stages/stage01_netzteil/stage.json", "old_str": "\"variantenkennung\": \"VARIANTX\"", "new_str": "\"variantenkennung\": \"EASY\""}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage02_kabel/stage.json", "old_str": "\"variant_id\": \"TL-Variantx-01\"", "new_str": "\"variant_id\": \"TL-Easy-01\""}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage03_schalter/stage.json", "old_str": "\"modellname\": \"tischlampe_variantx\"", "new_str": "\"modellname\": \"tischlampe_easy\""}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage04_fassung/stage.json", "old_str": "\"produktlinie\": \"variantxevo\"", "new_str": "\"produktlinie\": \"easyevo\""}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage05_leuchtmittel/stage.json", "old_str": "\"hardware_variante\": \"HW-VariantxEVO\"", "new_str": "\"hardware_variante\": \"HW-EasyEVO\""}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage06_schirm/stage.json", "old_str": "\"sku_variante\": \"SKU-VARIANTX-2024\"", "new_str": "\"sku_variante\": \"SKU-EASY-2024\""}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage07_standfuss/stage.json", "old_str": "\"baureihe\": \"Variantx\"", "new_str": "\"baureihe\": \"Easy\""}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage08_gelenkarm/stage.json", "old_str": "\"cad_projekt\": \"cad_variantx_arm\"", "new_str": "\"cad_projekt\": \"cad_easy_arm\""}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage09_dimmer/stage.json", "old_str": "\"kalibrierprofil\": \"dim_variantxevo.cal\"", "new_str": "\"kalibrierprofil\": \"dim_easyevo.cal\""}
+[ERGEBNIS] OK: ersetzt.
+[TOOL] str_replace {"path": "stages/stage10_verpackung/stage.json", "old_str": "\"etikett_name\": \"Tischlampe VariantxEVO\"", "new_str": "\"etikett_name\": \"Tischlampe EasyEVO\""}
+[ERGEBNIS] OK: ersetzt.
+
+--- Runde 2 (stop=end_turn, in=3656, out=129) ---
+[TEXT] FERTIG
+
+Die neue Variante "Easy" wurde erfolgreich aus der Platzhalter-Variante "Variantx" abgeleitet. Alle 10 Dateien wurden mit korrekter Gross-/Kleinschreibung angepasst:
+
+✓ VARIANTX → EASY  
+✓ Variantx → Easy  
+✓ variantx → easy  
+✓ variantxevo → easyevo  
+✓ VariantxEVO → EasyEVO
+
+VERBRAUCH: {"input_tokens": 5767, "output_tokens": 1371, "cache_creation_input_tokens": 0, "cache_read_input_tokens": 0}  API-Aufrufe: 2

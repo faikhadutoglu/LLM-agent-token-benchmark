@@ -1,0 +1,19 @@
+==============================================================================
+TESTFAIKMETHODIK - Bericht
+Methode 3: Semantische Karte
+Modell: claude-haiku-4-5-20251001
+Erstellt: 2026-08-31 22:57:13
+==============================================================================
+
+Variante   Ergebnis         Felder   Dateien   Zeit(s)   Aufrufe  In-Tok    Out-Tok  
+------------------------------------------------------------------------------
+Entry      BESTANDEN        10/10    30/30     19.2      4        13667     2099     
+Middle     BESTANDEN        10/10    30/30     18.8      4        13660     2051     
+Einfach    BESTANDEN        10/10    30/30     16.6      4        13822     2242     
+Mittlere   BESTANDEN        10/10    30/30     16.7      4        13700     2063     
+Easy       BESTANDEN        10/10    30/30     14.9      4        13597     1980     
+------------------------------------------------------------------------------
+GESAMT: bestanden 5/5 | Zeit 86.1 s | API-Aufrufe 20
+TOKENS: input 68446 | output 10435 | cache_creation 0 | cache_read 0
+
+Details je Variante: <Variante>/agent_log.txt und <Variante>/pruefung.txt

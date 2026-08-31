@@ -1,0 +1,5 @@
+Pruefplan Leuchtmittel
+1. Lichtstrom messen (Soll: 806 lm +/- 5 %)
+2. Farbtemperatur messen (Soll: 2700 K +/- 100 K)
+3. Dimmverhalten 10-100 % pruefen (kein Flackern)
+4. Ergebnis dokumentieren

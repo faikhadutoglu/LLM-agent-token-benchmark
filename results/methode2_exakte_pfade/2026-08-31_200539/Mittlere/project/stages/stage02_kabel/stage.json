@@ -1,0 +1,8 @@
+{
+  "stage": "02_kabel",
+  "beschreibung": "Zuleitung und interne Verkabelung",
+  "variant_id": "TL-Mittlere-01",
+  "kabellaenge_m": 1.8,
+  "querschnitt_mm2": 0.75,
+  "farbe": "schwarz"
+}
